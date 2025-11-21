@@ -1,6 +1,7 @@
-/* Hero Section */
+/* Hero Section with Background Image */
 .hero {
-  background: linear-gradient(120deg, #2E7D32, #1565C0);
+  background: linear-gradient(120deg, rgba(46, 125, 50, 0.85), rgba(21, 101, 192, 0.85)),
+              url('hero-bg.jpg') center/cover no-repeat;
   color: white;
   text-align: center;
   padding: 4rem 2rem;
@@ -30,4 +31,5 @@
   background: #1565C0;
   color: white;
 }
+
 
