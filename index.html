@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nexona - Truth. Voices. Connection.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
   <!-- Header -->
   <header>
@@ -21,9 +29,8 @@
     <a href="contribute.html" class="hero-btn">Share Your Voice</a>
   </section>
 
-  <!-- Main Content -->
+  <!-- Featured Sections -->
   <main>
-    <!-- Featured Sections -->
     <section>
       <h2>Featured Sections</h2>
 
@@ -32,13 +39,6 @@
         <p>Grassroots updates and local perspectives shaping Kenya’s future.</p>
         <a href="kenya.html">Read more →</a>
       </article>
-      <section id="auto-news">
-  <h2>Kenya News Digest</h2>
-  <!-- AUTO-NEWS -->
-  <p>Waiting for updates...</p>
-  <!-- END-AUTO-NEWS -->
-</section>
-
 
       <article class="card">
         <h3>🌍 Global Updates</h3>
@@ -53,147 +53,107 @@
       </article>
     </section>
 
-    <!-- Latest Updates Feed -->
+    <!-- Auto News Digest -->
+    <section id="auto-news">
+      <h2>Kenya News Digest</h2>
+      <!-- AUTO-NEWS -->
+      <p>Waiting for updates...</p>
+      <!-- END-AUTO-NEWS -->
+    </section>
+
+    <!-- Latest Updates -->
     <section>
       <h2>Latest Updates</h2>
-
       <article class="card">
         <h3>Community Market Opens in Nairobi</h3>
         <p>A new grassroots market has opened in Nairobi, bringing together local farmers and artisans.</p>
         <small>Published: Nov 21, 2025</small>
       </article>
-
       <article class="card">
         <h3>UN Summit on Climate Action</h3>
         <p>World leaders gathered to discuss urgent climate measures and pledged new commitments for 2026.</p>
         <small>Published: Nov 21, 2025</small>
       </article>
     </section>
-  </main><div class="layer">
-  <h3>Satellite Insights</h3>
-  <div id="satellite"></div>
 
-  <div id="city-buttons">
-    <button onclick="loadSatellite(36.8219, -1.2921, 'Nairobi')">Nairobi</button>
-    <button onclick="loadSatellite(39.6682, -4.0435, 'Mombasa')">Mombasa</button>
-    <button onclick="loadSatellite(34.7679, -0.0917, 'Kisumu')">Kisumu</button>
-  </div>
-</div>
+    <!-- Hidden Layers -->
+    <section id="hidden-layers">
+      <h2>Hidden Layers</h2>
 
+      <!-- Community Voices -->
+      <div class="layer">
+        <h3>Community Voices</h3>
+        <ul id="community-feed">
+          <li>Grassroots reports submitted via Contribute page will appear here.</li>
+        </ul>
+      </div>
+
+      <!-- Mainstream Feeds -->
+      <div class="layer">
+        <h3>Mainstream Feeds</h3>
+        <ul id="nation-feed"></ul>
+        <ul id="standard-feed"></ul>
+      </div>
+
+      <!-- Satellite Insights -->
+      <div class="layer">
+        <h3>Satellite Insights</h3>
+        <div id="satellite"></div>
+        <div id="city-buttons">
+          <button onclick="loadSatellite(36.8219, -1.2921, 'Nairobi')">Nairobi</button>
+          <button onclick="loadSatellite(39.6682, -4.0435, 'Mombasa')">Mombasa</button>
+          <button onclick="loadSatellite(34.7679, -0.0917, 'Kisumu')">Kisumu</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Nexona Information Network</p>
+    <p>© 2025 Nexona Information Network | Built in Kenya, Connected Globally</p>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    async function loadKenyaNews() {
+      const response = await fetch("https://newsapi.org/v2/top-headlines?country=ke&apiKey=YOUR_API_KEY");
+      const data = await response.json();
+      const list = document.getElementById("news-list");
+      data.articles.slice(0, 5).forEach(article => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${article.url}" target="_blank">${article.title}</a>`;
+        list.appendChild(li);
+      });
+    }
+    loadKenyaNews();
+
+    async function loadRSS() {
+      const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://nation.africa/rss.xml");
+      const data = await response.json();
+      const list = document.getElementById("nation-feed");
+      data.items.slice(0, 5).forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+        list.appendChild(li);
+      });
+    }
+    loadRSS();
+
+    async function loadSatellite(lon, lat, city) {
+      const response = await fetch(`https://api.nasa.gov/planetary/earth/assets?lon=${lon}&lat=${lat}&date=2025-11-21&dim=0.1&api_key=DEMO_KEY`);
+      const data = await response.json();
+      const satDiv = document.getElementById("satellite");
+      if (data.url) {
+        satDiv.innerHTML = `<h4>${city} Satellite View</h4><img src="${data.url}" alt="Satellite view of ${city}" style="width:100%;border-radius:8px;">`;
+      } else {
+        satDiv.innerHTML = `<p>No satellite data available for ${city} right now.</p>`;
+      }
+    }
+    loadSatellite(36.8219, -1.2921, "Nairobi");
+  </script>
+
 </body>
-</html><section id="kenya-news">
-  <h2>Latest Kenya News</h2>
-  <ul id="news-list"></ul>
-</section>
+</html>
 
-<script>
-  async function loadKenyaNews() {
-    const response = await fetch(
-      "https://newsapi.org/v2/top-headlines?country=ke&apiKey=YOUR_API_KEY"
-    );
-    const data = await response.json();
-    const list = document.getElementById("news-list");
-
-    data.articles.slice(0, 5).forEach(article => {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${article.url}" target="_blank">${article.title}</a>`;
-      list.appendChild(li);
-    });
-  }
-
-  loadKenyaNews();
-</script>
-<script>
-  async function loadSatellite() {
-    const response = await fetch(
-      "https://api.nasa.gov/planetary/earth/assets?lon=36.8219&lat=-1.2921&date=2025-11-21&dim=0.1&api_key=DEMO_KEY"
-    );
-    const data = await response.json();
-    const satDiv = document.getElementById("satellite");
-
-    if (data.url) {
-      satDiv.innerHTML = `<img src="${data.url}" alt="Satellite view of Nairobi" style="width:100%;border-radius:8px;">`;
-    } else {
-      satDiv.innerHTML = "<p>No satellite data available right now.</p>";
-    }
-  }
-
-  loadSatellite();
-<script>
-  async function loadSatellite(lon, lat, city) {
-    const response = await fetch(
-      `https://api.nasa.gov/planetary/earth/assets?lon=${lon}&lat=${lat}&date=2025-11-21&dim=0.1&api_key=DEMO_KEY`
-    );
-    const data = await response.json();
-    const satDiv = document.getElementById("satellite");
-
-    if (data.url) {
-      satDiv.innerHTML = `
-        <h4>${city} Satellite View</h4>
-        <img src="${data.url}" alt="Satellite view of ${city}" style="width:100%;border-radius:8px;">
-      `;
-    } else {
-      satDiv.innerHTML = `<p>No satellite data available for ${city} right now.</p>`;
-    }
-  }
-
-  // Load Nairobi by default
-  loadSatellite(36.8219, -1.2921, "Nairobi");
-</script>
-
-
-  <!-- Community Voices -->
-  <div class="layer">
-    <h3>Community Voices</h3>
-    <ul id="community-feed">
-      <li>Grassroots reports submitted via Contribute page will appear here.</li>
-    </ul>
-  </div>
-
-  <!-- Mainstream Feeds -->
-  <div class="layer">
-    <h3>Mainstream Feeds</h3>
-    <ul id="nation-feed"></ul>
-    <ul id="standard-feed"></ul>
-  </div>
-
-  <!-- Satellite Data -->
-  <div class="layer">
-    <h3>Satellite Insights</h3>
-    <div id="satellite"></div>
-  </div>
-</section>
-<section id="kenya-news">
-  <h2>Latest Kenya News (Nation Africa)</h2>
-  <ul id="rss-list"></ul>
-</section>
-
-<script>
-  async function loadRSS() {
-    const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://nation.africa/rss.xml");
-    const data = await response.json();
-    const list = document.getElementById("rss-list");
-
-    data.items.slice(0, 5).forEach(item => {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-      list.appendChild(li);
-    });
-  }
-  loadRSS();
-</script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Nexona - Truth. Voices. Connection.</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
 
