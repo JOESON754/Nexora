@@ -2,8 +2,8 @@ name: Auto Update Nexona
 
 on:
   schedule:
-    - cron: "0 * * * *"   # runs every hour
-  workflow_dispatch:       # allows manual trigger
+    - cron: "*/15 * * * *"   # runs every 15 minutes
+  workflow_dispatch:         # allows manual trigger
 
 jobs:
   update:
@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm install node-fetch
 
-      - name: Fetch feeds, summarize with AI, and update satellite
+      - name: Fetch feeds, summarize with AI, and update satellites
         run: |
           node <<'EOF'
           import fetch from "node-fetch";
@@ -40,10 +40,28 @@ jobs:
             });
             const summary = await ai.json();
 
-            // === 3. Fetch NASA Satellite Image (Nairobi example) ===
-            const nasa = await fetch("https://api.nasa.gov/planetary/earth/assets?lon=36.8219&lat=-1.2921&date=2025-11-21&dim=0.1&api_key=YOUR_NASA_KEY");
-            const nasaData = await nasa.json();
-            const satImage = nasaData.url || "";
+            // === 3. Fetch NASA Satellite Images for Nairobi, Mombasa, Kisumu ===
+            const nasaKey = "YOUR_NASA_KEY";
+            const cities = {
+              "Nairobi": { lon: 36.8219, lat: -1.2921 },
+              "Mombasa": { lon: 39.6682, lat: -4.0435 },
+              "Kisumu": { lon: 34.7679, lat: -0.0917 }
+            };
+
+            let satelliteHTML = "";
+            for (const [city, coords] of Object.entries(cities)) {
+              const nasa = await fetch(
+                `https://api.nasa.gov/planetary/earth/assets?lon=${coords.lon}&lat=${coords.lat}&date=2025-11-21&dim=0.1&api_key=${nasaKey}`
+              );
+              const nasaData = await nasa.json();
+              const satImage = nasaData.url || "";
+              satelliteHTML += `
+                <div class="sat-block">
+                  <h4>${city} Satellite View</h4>
+                  ${satImage ? `<img src="${satImage}" alt="Satellite view of ${city}" style="width:100%;border-radius:8px;">` : `<p>No satellite data available for ${city}.</p>`}
+                </div>
+              `;
+            }
 
             // === 4. Update index.html placeholders ===
             let html = fs.readFileSync("index.html", "utf8");
@@ -52,9 +70,9 @@ jobs:
             html = html.replace(/<!-- AUTO-NEWS -->.*<!-- END-AUTO-NEWS -->/s,
               `<!-- AUTO-NEWS --><p>${summary.output || summary}</p><!-- END-AUTO-NEWS -->`);
 
-            // Replace SATELLITE block
+            // Replace AUTO-SAT block
             html = html.replace(/<!-- AUTO-SAT -->.*<!-- END-AUTO-SAT -->/s,
-              `<!-- AUTO-SAT --><img src="${satImage}" alt="Latest Satellite View" style="width:100%;border-radius:8px;"><!-- END-AUTO-SAT -->`);
+              `<!-- AUTO-SAT -->${satelliteHTML}<!-- END-AUTO-SAT -->`);
 
             fs.writeFileSync("index.html", html);
           }
@@ -66,5 +84,5 @@ jobs:
           git config user.name "Nexona Bot"
           git config user.email "bot@nexona"
           git add index.html
-          git commit -m "Auto-update news + satellite"
+          git commit -m "Auto-update news + satellite (every 15 minutes)"
           git push
