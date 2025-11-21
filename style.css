@@ -1,40 +1,76 @@
-<!-- Hero Section -->
-<section class="hero">
-  <img id="hero-img" alt="Kenya photo">
-  <div class="hero-text">
-    <h2>Truth. Voices. Connection.</h2>
-    <p>Amplifying authentic perspectives from Kenya and beyond.</p>
-    <a href="voices.html" class="btn">Explore Voices</a>
-  </div>
-</section>
+/* General styles */
+body {
+  margin: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
 
-<!-- Content Cards -->
-<section class="cards">
-  <h2>Latest Highlights</h2>
-  <div class="card-grid">
-    <div class="card">
-      <img id="kenya-img" alt="Kenya">
-      <h3>Kenya Updates</h3>
-      <p>Grassroots reports and verified news from across Kenya.</p>
-      <a href="kenya.html" class="btn">Read More</a>
-    </div>
-    <div class="card">
-      <img id="global-img" alt="Global">
-      <h3>Global Reach</h3>
-      <p>Connecting Kenya’s voices to worldwide conversations.</p>
-      <a href="global.html" class="btn">Read More</a>
-    </div>
-    <div class="card">
-      <img id="voices-img" alt="Voices">
-      <h3>Community Voices</h3>
-      <p>First-hand reports and contributions from citizens.</p>
-      <a href="voices.html" class="btn">Read More</a>
-    </div>
-  </div>
-</section>
+/* Header */
+header {
+  background: linear-gradient(90deg, #2E7D32, #1565C0);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
 
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+}
+
+/* Navigation */
+nav {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #1565C0;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #2E7D32;
+}
+
+/* Grid layout */
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1565C0;
+}
+
+/* Footer */
+footer {
+  background: #1565C0;
   color: white;
   text-align: center;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
