@@ -3,86 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexona</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Nexona | Truth. Voices. Connection.</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(90deg, #2E7D32, #1565C0);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    nav {
+      background: #eee;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #1565C0;
+      font-weight: bold;
+    }
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      color: #2E7D32;
+      border-bottom: 2px solid #1565C0;
+      padding-bottom: 0.5rem;
+    }
+    footer {
+      background: #1565C0;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation -->
   <header>
-    <nav class="navbar">
-      <h1 class="logo">Nexona</h1>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="kenya.html">Kenya</a></li>
-        <li><a href="global.html">Global</a></li>
-        <li><a href="voices.html">Voices</a></li>
-        <li><a href="contribute.html" class="btn">Contribute</a></li>
-      </ul>
-    </nav>
+    <h1>Nexona</h1>
+    <p>Truth. Voices. Connection.</p>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <img id="hero-img" alt="Kenya photo">
-    <div class="hero-text">
-      <h2>Truth. Voices. Connection.</h2>
-      <p>Amplifying authentic perspectives from Kenya and beyond.</p>
-      <a href="voices.html" class="btn">Explore Voices</a>
-    </div>
+  <nav>
+    <a href="kenya.html">Kenya</a>
+    <a href="global.html">Global</a>
+    <a href="voices.html">Voices</a>
+    <a href="contribute.html">Contribute</a>
+  </nav>
+
+  <section id="latest-news">
+    <h2>Latest News</h2>
+    <!-- Embed RSS feed headlines here -->
+    <p>Dynamic feed from Nation Africa & The Standard will appear here.</p>
   </section>
 
-  <!-- Content Cards -->
-  <section class="cards">
-    <h2>Latest Highlights</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img id="kenya-img" alt="Kenya">
-        <h3>Kenya Updates</h3>
-        <p>Grassroots reports and verified news from across Kenya.</p>
-        <a href="kenya.html" class="btn">Read More</a>
-      </div>
-      <div class="card">
-        <img id="global-img" alt="Global">
-        <h3>Global Reach</h3>
-        <p>Connecting Kenya’s voices to worldwide conversations.</p>
-        <a href="global.html" class="btn">Read More</a>
-      </div>
-      <div class="card">
-        <img id="voices-img" alt="Voices">
-        <h3>Community Voices</h3>
-        <p>First-hand reports and contributions from citizens.</p>
-        <a href="voices.html" class="btn">Read More</a>
-      </div>
-    </div>
+  <section id="community-voices">
+    <h2>Community Voices</h2>
+    <!-- Submissions from Contribute form -->
+    <p>Authentic grassroots reports will be highlighted here.</p>
   </section>
 
   <footer>
-    <p>&copy; 2025 Nexona. Built with community voices.</p>
+    <p>&copy; 2025 Nexona | Connecting Kenya to the World</p>
   </footer>
-
-  <!-- Unsplash API Script -->
-  <script>
-    async function loadImage(query, elementId) {
-      try {
-        const response = await fetch(
-          `https://api.unsplash.com/photos/random?query=${query}&client_id=YOUR_ACCESS_KEY`
-        );
-        const data = await response.json();
-        document.getElementById(elementId).src = data.urls.regular;
-      } catch (error) {
-        console.error("Error fetching image:", error);
-      }
-    }
-
-    // Load hero + cards
-    loadImage("kenya landscape", "hero-img");
-    loadImage("kenya", "kenya-img");
-    loadImage("global city", "global-img");
-    loadImage("community people", "voices-img");
-  </script>
 </body>
-</html>
-
 </html>
 
 
