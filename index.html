@@ -76,6 +76,28 @@
     <p>© 2025 Nexona Information Network</p>
   </footer>
 </body>
-</html>
+</html><section id="kenya-news">
+  <h2>Latest Kenya News</h2>
+  <ul id="news-list"></ul>
+</section>
+
+<script>
+  async function loadKenyaNews() {
+    const response = await fetch(
+      "https://newsapi.org/v2/top-headlines?country=ke&apiKey=YOUR_API_KEY"
+    );
+    const data = await response.json();
+    const list = document.getElementById("news-list");
+
+    data.articles.slice(0, 5).forEach(article => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${article.url}" target="_blank">${article.title}</a>`;
+      list.appendChild(li);
+    });
+  }
+
+  loadKenyaNews();
+</script>
+
 
 
