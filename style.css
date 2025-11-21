@@ -1,147 +1,105 @@
-/* Global Styles */
+/* Branding colors */
+:root {
+  --kenya-green: #2E7D32;
+  --global-blue: #1565C0;
+  --light-gray: #f5f5f5;
+}
+
 body {
-  font-family: 'Open Sans', Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  background: #f5f5f5;
+  font-family: Arial, sans-serif;
+  background: var(--light-gray);
   color: #333;
 }
 
-/* Header */
-header {
-  background: #2E7D32; /* Kenya green */
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--global-blue);
+  padding: 1rem 2rem;
+}
+.logo {
   color: white;
-  text-align: center;
-  padding: 2rem 1rem;
+  font-size: 1.5rem;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+.nav-links .btn {
+  background: var(--kenya-green);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
 }
 
-header h1 {
-  margin: 0;
+/* Hero */
+.hero {
+  background: url('images/hero.jpg') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+.hero-text h2 {
   font-size: 2.5rem;
 }
-
-header p {
-  margin: 0.5rem 0 0;
+.hero-text p {
   font-size: 1.2rem;
 }
-
-/* Navigation */
-nav {
-  background: #1565C0; /* Global blue */
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
-nav a {
+.hero-text .btn {
+  background: var(--kenya-green);
   color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
   text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Hero Section */
-.hero {
-  background: url('images/nairobi-skyline.jpg') center/cover no-repeat;
-  color: white;
-  text-align: center;
-  padding: 4rem 2rem;
-  position: relative;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(21, 101, 192, 0.6); /* Blue overlay */
-}
-
-.hero h2, .hero p, .hero a {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  background: #2E7D32;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.hero-btn:hover {
-  background: #1565C0;
 }
 
 /* Cards */
-section {
+.cards {
   padding: 2rem;
+  text-align: center;
 }
-
+.card-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .card {
   background: white;
   border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1rem 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-/* Hidden Layers Grid */
-#hidden-layers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.layer {
-  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 300px;
   padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
-/* Satellite Buttons */
-#city-buttons {
+.card img {
+  width: 100%;
+  border-radius: 6px;
+}
+.card h3 {
+  color: var(--global-blue);
+}
+.card .btn {
+  display: inline-block;
   margin-top: 1rem;
-}
-
-#city-buttons button {
-  margin-right: 0.5rem;
-  padding: 0.6rem 1rem;
-  border: none;
-  border-radius: 5px;
-  background: #1565C0;
+  background: var(--kenya-green);
   color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#city-buttons button:hover {
-  background: #2E7D32;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 /* Footer */
 footer {
-  background: #2E7D32;
+  background: var(--global-blue);
   color: white;
   text-align: center;
   padding: 1rem;
-  margin-top: 2rem;
-}.verified {
-  color: green;
-  font-weight: bold;
-  margin-left: 0.5rem;
 }
 
