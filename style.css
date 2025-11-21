@@ -1,99 +1,29 @@
-
-/* General styles */
-body {
-  margin: 0;
-  font-family: 'Open Sans', Arial, sans-serif;
-  background: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Header */
-header {
-  background: linear-gradient(90deg, #2E7D32, #1565C0);
-  color: white;
-  text-align: center;
-  padding: 2rem;
-}.logo {
+/* Logo image */
+.logo {
   height: 60px;
+  width: auto;
   margin-right: 15px;
-  vertical-align: middle;
+  border-radius: 50%; /* Makes it circular if the image isn't already */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-header {
+
+/* Branding container */
+.branding {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
 }
 
-header h1 {
+/* Title and tagline next to logo */
+.title-text h1 {
   margin: 0;
   font-size: 2.5rem;
+  color: white;
 }
-header p {
+
+.title-text p {
   margin: 0.5rem 0 0;
   font-size: 1.2rem;
   font-weight: 300;
+  color: #f0f0f0;
 }
-
-/* Navigation */
-nav {
-  position: sticky;
-  top: 0;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
-nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-  color: #1565C0;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-nav a:hover {
-  color: #2E7D32;
-}
-
-/* Grid layout for main content */
-main.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 2rem;
-}
-
-/* Cards */
-.card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.card h2 {
-  margin-top: 0;
-  color: #1565C0;
-}
-
-/* Footer */
-footer {
-  background: #1565C0;
-  color: white;
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 0.9rem;
-  margin-top: 2rem;
-}
-footer a {
-  color: #fff;
-  margin: 0 0.5rem;
-  text-decoration: underline;
-}
-
