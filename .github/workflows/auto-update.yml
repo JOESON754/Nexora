@@ -1,0 +1,58 @@
+name: Auto Update Nexona
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # runs every hour
+  workflow_dispatch:       # allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install node-fetch
+
+      - name: Fetch feeds and summarize with AI
+        run: |
+          node <<'EOF'
+          import fetch from "node-fetch";
+
+          async function run() {
+            // Fetch Nation Africa RSS
+            const rss = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://nation.africa/rss.xml");
+            const data = await rss.json();
+            const headlines = data.items.slice(0,5).map(i => i.title).join("\n");
+
+            // Send to AI summarizer (replace with your endpoint)
+            const ai = await fetch("https://your-ai-endpoint", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text: headlines })
+            });
+            const summary = await ai.json();
+
+            // Write summary into index.html
+            const fs = require("fs");
+            let html = fs.readFileSync("index.html", "utf8");
+            html = html.replace(/<!-- AUTO-NEWS -->.*<!-- END-AUTO-NEWS -->/s,
+              `<!-- AUTO-NEWS --><p>${summary}</p><!-- END-AUTO-NEWS -->`);
+            fs.writeFileSync("index.html", html);
+          }
+          run();
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config user.name "Nexona Bot"
+          git config user.email "bot@nexona"
+          git add index.html
+          git commit -m "Auto-update news summary"
+          git push
