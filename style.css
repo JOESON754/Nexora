@@ -4,6 +4,7 @@ body {
   font-family: 'Open Sans', Arial, sans-serif;
   background: #f4f4f4;
   color: #333;
+  line-height: 1.6;
 }
 
 /* Header */
@@ -20,11 +21,12 @@ header h1 {
 header p {
   margin: 0.5rem 0 0;
   font-size: 1.2rem;
+  font-weight: 300;
 }
 
 /* Navigation */
 nav {
-  position: sticky; /* keeps nav visible when scrolling */
+  position: sticky;
   top: 0;
   background: #fff;
   display: flex;
@@ -44,7 +46,7 @@ nav a:hover {
   color: #2E7D32;
 }
 
-/* Grid layout */
+/* Grid layout for main content */
 main.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
