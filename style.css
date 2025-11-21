@@ -1,29 +1,31 @@
-/* Logo image */
-.logo {
-  height: 60px;
-  width: auto;
-  margin-right: 15px;
-  border-radius: 50%; /* Makes it circular if the image isn't already */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* Branding container */
-.branding {
+.listing {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Title and tagline next to logo */
-.title-text h1 {
-  margin: 0;
-  font-size: 2.5rem;
+.listing-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.contributor {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.view-btn {
+  background: #1565C0;
   color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.title-text p {
-  margin: 0.5rem 0 0;
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: #f0f0f0;
+.view-btn:hover {
+  background: #2E7D32;
 }
+
