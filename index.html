@@ -1,72 +1,4 @@
-<script>
-  async function loadSatellite() {
-    const response = await fetch(
-      "https://api.nasa.gov/planetary/earth/assets?lon=36.8219&lat=-1.2921&date=2025-11-21&dim=0.1&api_key=DEMO_KEY"
-    );
-    const data = await response.json();
-    const satDiv = document.getElementById("satellite");
 
-    if (data.url) {
-      satDiv.innerHTML = `<img src="${data.url}" alt="Satellite view of Nairobi" style="width:100%;border-radius:8px;">`;
-    } else {
-      satDiv.innerHTML = "<p>No satellite data available right now.</p>";
-    }
-  }
-
-  loadSatellite();
-</script>
-<section id="hidden-layers">
-  <h2>Hidden Layers</h2>
-  <p>Unfolding truths from community voices, mainstream feeds, and satellite eyes.</p>
-
-  <!-- Community Voices -->
-  <div class="layer">
-    <h3>Community Voices</h3>
-    <ul id="community-feed">
-      <li>Grassroots reports submitted via Contribute page will appear here.</li>
-    </ul>
-  </div>
-
-  <!-- Mainstream Feeds -->
-  <div class="layer">
-    <h3>Mainstream Feeds</h3>
-    <ul id="nation-feed"></ul>
-    <ul id="standard-feed"></ul>
-  </div>
-
-  <!-- Satellite Data -->
-  <div class="layer">
-    <h3>Satellite Insights</h3>
-    <div id="satellite"></div>
-  </div>
-</section>
-<section id="kenya-news">
-  <h2>Latest Kenya News (Nation Africa)</h2>
-  <ul id="rss-list"></ul>
-</section>
-
-<script>
-  async function loadRSS() {
-    const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://nation.africa/rss.xml");
-    const data = await response.json();
-    const list = document.getElementById("rss-list");
-
-    data.items.slice(0, 5).forEach(item => {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-      list.appendChild(li);
-    });
-  }
-  loadRSS();
-</script>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Nexona - Truth. Voices. Connection.</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
   <!-- Header -->
   <header>
     <h1>Nexona</h1>
@@ -159,6 +91,74 @@
 
   loadKenyaNews();
 </script>
+<script>
+  async function loadSatellite() {
+    const response = await fetch(
+      "https://api.nasa.gov/planetary/earth/assets?lon=36.8219&lat=-1.2921&date=2025-11-21&dim=0.1&api_key=DEMO_KEY"
+    );
+    const data = await response.json();
+    const satDiv = document.getElementById("satellite");
 
+    if (data.url) {
+      satDiv.innerHTML = `<img src="${data.url}" alt="Satellite view of Nairobi" style="width:100%;border-radius:8px;">`;
+    } else {
+      satDiv.innerHTML = "<p>No satellite data available right now.</p>";
+    }
+  }
+
+  loadSatellite();
+</script>
+<section id="hidden-layers">
+  <h2>Hidden Layers</h2>
+  <p>Unfolding truths from community voices, mainstream feeds, and satellite eyes.</p>
+
+  <!-- Community Voices -->
+  <div class="layer">
+    <h3>Community Voices</h3>
+    <ul id="community-feed">
+      <li>Grassroots reports submitted via Contribute page will appear here.</li>
+    </ul>
+  </div>
+
+  <!-- Mainstream Feeds -->
+  <div class="layer">
+    <h3>Mainstream Feeds</h3>
+    <ul id="nation-feed"></ul>
+    <ul id="standard-feed"></ul>
+  </div>
+
+  <!-- Satellite Data -->
+  <div class="layer">
+    <h3>Satellite Insights</h3>
+    <div id="satellite"></div>
+  </div>
+</section>
+<section id="kenya-news">
+  <h2>Latest Kenya News (Nation Africa)</h2>
+  <ul id="rss-list"></ul>
+</section>
+
+<script>
+  async function loadRSS() {
+    const response = await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://nation.africa/rss.xml");
+    const data = await response.json();
+    const list = document.getElementById("rss-list");
+
+    data.items.slice(0, 5).forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+      list.appendChild(li);
+    });
+  }
+  loadRSS();
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nexona - Truth. Voices. Connection.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
 
