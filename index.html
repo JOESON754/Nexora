@@ -1,91 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexona | Truth. Voices. Connection.</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(90deg, #2E7D32, #1565C0);
-      color: white;
-      padding: 1.5rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1.2rem;
-      font-weight: 300;
-    }
-    nav {
-      background: #eee;
-      display: flex;
-      justify-content: center;
-      padding: 0.5rem;
-    }
-    nav a {
-      margin: 0 1rem;
-      text-decoration: none;
-      color: #1565C0;
-      font-weight: bold;
-    }
-    section {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    section h2 {
-      color: #2E7D32;
-      border-bottom: 2px solid #1565C0;
-      padding-bottom: 0.5rem;
-    }
-    footer {
-      background: #1565C0;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Nexona</h1>
-    <p>Truth. Voices. Connection.</p>
-  </header>
+/* General styles */
+body {
+  margin: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
 
-  <nav>
-    <a href="kenya.html">Kenya</a>
-    <a href="global.html">Global</a>
-    <a href="voices.html">Voices</a>
-    <a href="contribute.html">Contribute</a>
-  </nav>
+/* Header */
+header {
+  background: linear-gradient(90deg, #2E7D32, #1565C0);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
 
-  <section id="latest-news">
-    <h2>Latest News</h2>
-    <!-- Embed RSS feed headlines here -->
-    <p>Dynamic feed from Nation Africa & The Standard will appear here.</p>
-  </section>
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
 
-  <section id="community-voices">
-    <h2>Community Voices</h2>
-    <!-- Submissions from Contribute form -->
-    <p>Authentic grassroots reports will be highlighted here.</p>
-  </section>
+header p {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+}
 
-  <footer>
-    <p>&copy; 2025 Nexona | Connecting Kenya to the World</p>
-  </footer>
-</body>
-</html>
+/* Navigation */
+nav {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #1565C0;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #2E7D32;
+}
+
+/* Grid layout */
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-top: 0;
+  color: #1565C0;
+}
+
+/* Footer */
+footer {
+  background: #1565C0;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
 
 
