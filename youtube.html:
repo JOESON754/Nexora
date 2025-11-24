@@ -1,4 +1,51 @@
 git add youtube.html
 git commit -m "Add YouTube-style homepage layout"
 git push
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexona Tube</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">▶ Nexona</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+      <button>🔍</button>
+    </div>
+    <div class="user-icons">
+      <span>🔔</span>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li>🏠 Home</li>
+      <li>🔥 Trending</li>
+      <li>📺 Submissions</li>
+      <li>📚 Library</li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="video-card">
+      <img src="https://via.placeholder.com/300x180" alt="Thumbnail">
+      <h3>Community Story</h3>
+      <p>Kenya Voices • 1K views • 2h ago</p>
+    </div>
+    <div class="video-card">
+      <img src="https://via.placeholder.com/300x180" alt="Thumbnail">
+      <h3>Global Update</h3>
+      <p>Nexona Feed • 500 views • 1d ago</p>
+    </div>
+  </main>
+</body>
+</html>
 
