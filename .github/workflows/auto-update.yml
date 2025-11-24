@@ -1,0 +1,94 @@
+name: Auto Update Nexona
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # runs every 15 minutes
+  workflow_dispatch:         # allows manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      NASA_KEY: ${{ secrets.NASA_KEY }}
+      OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install node-fetch
+
+      - name: Fetch feeds, summarize with AI, and update satellites
+        run: |
+          node <<'EOF'
+          const fetch = require("node-fetch");
+          const fs = require("fs");
+
+          async function run() {
+            // === 1. Fetch RSS feed ===
+            const rss = await fetch("https://www.standardmedia.co.ke/rss/kenya");
+            const rssText = await rss.text();
+
+            // === 2. Summarize with AI ===
+            const ai = await fetch("https://api.openai.com/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${process.env.OPENAI_KEY}`
+              },
+              body: JSON.stringify({
+                model: "gpt-4.1-mini",
+                messages: [{ role: "user", content: `Summarize this feed: ${rssText}` }]
+              })
+            });
+            const summary = await ai.json();
+
+            // === 3. Fetch NASA Satellite Images for Nairobi, Mombasa, Kisumu ===
+            const nasaKey = process.env.NASA_KEY;
+            const cities = {
+              "Nairobi": { lon: 36.8219, lat: -1.2921 },
+              "Mombasa": { lon: 39.6682, lat: -4.0435 },
+              "Kisumu": { lon: 34.7679, lat: -0.0917 }
+            };
+
+            let satelliteHTML = "";
+            for (const [city, coords] of Object.entries(cities)) {
+              const nasa = await fetch(
+                `https://api.nasa.gov/planetary/earth/assets?lon=${coords.lon}&lat=${coords.lat}&date=2025-11-21&dim=0.1&api_key=${nasaKey}`
+              );
+              const nasaData = await nasa.json();
+              const satImage = nasaData.url || "";
+              satelliteHTML += `
+                <div class="sat-block">
+                  <h4>${city} Satellite View</h4>
+                  ${satImage ? `<img src="${satImage}" alt="Satellite view of ${city}" style="width:100%;border-radius:8px;">` : `<p>No satellite data available for ${city}.</p>`}
+                </div>
+              `;
+            }
+
+            // === 4. Update index.html placeholders ===
+            let html = fs.readFileSync("index.html", "utf8");
+            html = html.replace(/<!-- AUTO-NEWS -->.*<!-- END-AUTO-NEWS -->/s,
+              `<!-- AUTO-NEWS --><p>${summary.choices?.[0]?.message?.content || "No summary available"}</p><!-- END-AUTO-NEWS -->`);
+
+            html = html.replace(/<!-- AUTO-SAT -->.*<!-- END-AUTO-SAT -->/s,
+              `<!-- AUTO-SAT -->${satelliteHTML}<!-- END-AUTO-SAT -->`);
+
+            fs.writeFileSync("index.html", html);
+          }
+
+          run();
+          EOF
+
+      - name: Commit & push changes
+        run: |
+          git config user.name "Nexona Bot"
+          git config user.email "bot@nexona"
+          git add index.html
+          git commit -m "Auto-update news + satellite (every 15 minutes)" || echo "No changes to commit"
+          git push
