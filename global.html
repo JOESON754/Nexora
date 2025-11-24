@@ -4,6 +4,7 @@
     <p>Loading global headlines...</p>
   </div>
 </section>
+
 <section class="page-banner">
   <img id="global-banner" alt="Global banner">
   <div class="banner-text">
@@ -12,7 +13,13 @@
   </div>
 </section>
 
+<script src="js/rss.js"></script>
+<script src="js/images.js"></script>
 <script>
+  // Load BBC World News headlines into global-feed
+  loadRSS("http://feeds.bbci.co.uk/news/world/rss.xml", "global-feed");
+
+  // Load a banner image (international skyline)
   loadImage("international city skyline", "global-banner");
 </script>
 
