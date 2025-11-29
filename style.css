@@ -1,123 +1,46 @@
-.logo {
-  height: 60px;       /* controls logo size */
-  margin-right: 15px; /* spacing between logo and text */
-  vertical-align: middle; /* keeps it aligned with title */
-}
-
-.listing {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.listing-img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.contributor {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.view-btn {
-  background: #1565C0;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.view-btn:hover {
-  background: #2E7D32;
-}
-/* YouTube-style layout */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: #fff;
+/* Header container */
+header {
+  display: flex;              /* puts logo + text side by side */
+  align-items: center;        /* vertically centers items */
+  justify-content: space-between; /* spreads logo and nav evenly */
+  padding: 10px 20px;
+  background-color: #f9f9f9;  /* optional: light background */
   border-bottom: 1px solid #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-  z-index: 1000;
 }
 
+/* Logo styling */
 .logo {
-  font-weight: bold;
-  color: red;
-  font-size: 20px;
+  height: 60px;               /* adjust size */
+  margin-right: 15px;         /* spacing from text */
 }
 
-.search-bar {
-  flex: 1;
+/* Title + tagline block */
+.title-text {
   display: flex;
-  justify-content: center;
+  flex-direction: column;     /* stack title above tagline */
 }
 
-.search-bar input {
-  width: 60%;
-  padding: 5px;
-}
-
-.user-icons span {
-  margin-left: 15px;
-  cursor: pointer;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 200px;
-  background: #f9f9f9;
-  padding-top: 70px; /* offset for header */
-  border-right: 1px solid #ddd;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
+.title-text h1 {
   margin: 0;
+  font-size: 1.8em;
 }
 
-.sidebar li {
-  padding: 15px;
-  cursor: pointer;
+.title-text p {
+  margin: 0;
+  font-size: 1em;
+  color: #555;                /* softer color for tagline */
 }
 
-/* Main content grid */
-.content {
-  margin-left: 200px; /* space for sidebar */
-  margin-top: 70px;   /* space for header */
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+/* Navigation bar */
+nav {
+  display: flex;
+  gap: 15px;                  /* spacing between links */
 }
 
-.video-card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.video-card h3 {
-  margin: 10px 0 5px;
-  font-size: 16px;
-}
-
-.video-card p {
-  color: #555;
-  font-size: 14px;
+nav a {
+  text-decoration: none;
+  color: #0077cc;             /* Nexona blue */
+  font-weight: bold;
 }
 
 
