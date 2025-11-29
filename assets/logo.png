@@ -1,0 +1,10 @@
+nexona/
+├── index.html
+├── style.css
+├── assets/
+│   ├── logo.png
+│   ├── favicon.ico
+│   ├── banner.jpg
+│   └── icons/
+│       ├── kenya.svg
+│       └── globe.svg
