@@ -5,13 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nexona | Kenya</title>
   <link rel="stylesheet" href="style.css">
-  <section class="card">
-  <h2>🇰🇪 Latest Headlines</h2>
-  <div id="kenya-feed">
-    <p>Loading headlines...</p>
-  </div>
-</section>
-
 </head>
 <body>
   <header>
@@ -27,6 +20,14 @@
     </nav>
   </header>
 
+  <!-- Latest Headlines -->
+  <section class="card">
+    <h2>🇰🇪 Latest Headlines</h2>
+    <div id="kenya-feed">
+      <p>Loading headlines...</p>
+    </div>
+  </section>
+
   <!-- Banner -->
   <section class="page-banner">
     <img id="kenya-banner" alt="Kenya banner">
@@ -35,8 +36,6 @@
       <p>Grassroots reports and verified news from across Kenya.</p>
     </div>
   </section>
-  <script src="js/rss.js"></script>
-
 
   <!-- Content -->
   <section class="cards">
@@ -50,6 +49,8 @@
     <p>&copy; 2025 Nexona. Built with community voices.</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="js/rss.js"></script>
   <script>
     async function loadImage(query, elementId) {
       try {
@@ -62,6 +63,10 @@
         console.error("Error fetching image:", error);
       }
     }
-    loadImage("kenya landscape", "kenya-banner
-<script src="script.js"></script>
+    loadImage("kenya landscape", "kenya-banner");
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
+
 
